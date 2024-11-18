@@ -3,6 +3,7 @@
   home-manager.users.tim = {
     pkgs,
     tiling-manager-bar-theme,
+    hostname,
     ...
   }: {
     programs.waybar = {
@@ -11,26 +12,8 @@
       # waybar is started by sway
       systemd.enable = false;
 
-      settings = [
-        {
-          layer = "top";
-          height = 20;
-          modules-center = ["clock"];
-          modules-left = [
-            "sway/workspaces"
-            "sway/mode"
-          ];
-          modules-right = [
-            "network#wifi"
-            "cpu"
-            "temperature"
-            "memory"
-            "disk"
-            "battery"
-            "pulseaudio"
-            "tray"
-            "custom/notification"
-          ];
+      settings = let
+        custom-modules = {
           "clock" = {
             "format" = "{:%d-%m-%Y %H:%M}";
             "tooltip" = false;
@@ -121,7 +104,53 @@
             "on-click-right" = "${pkgs.swaynotificationcenter}/bin/swaync-client -d -sw";
             "escape" = true;
           };
-        }
+        };
+        main-bar =
+          {
+            output =
+              if hostname == "tim-pc"
+              then "DP-1"
+              else {};
+            layer = "top";
+            height = 20;
+            modules-center = ["clock"];
+            modules-left = [
+              "sway/workspaces"
+              "sway/mode"
+            ];
+            modules-right = [
+              "network#wifi"
+              "cpu"
+              "temperature"
+              "memory"
+              "disk"
+              "battery"
+              "pulseaudio"
+              "tray"
+              "custom/notification"
+            ];
+          }
+          // custom-modules;
+        secondary-bar =
+          {
+            output = "HDMI-A-1";
+            layer = "top";
+            height = 20;
+            modules-center = ["clock"];
+            modules-left = [
+              "sway/workspaces"
+              "sway/mode"
+            ];
+            modules-right = [
+              "cpu"
+              "temperature"
+              "memory"
+            ];
+          }
+          // custom-modules;
+      in [
+        main-bar
+        secondary-bar
       ];
 
       style = ''
