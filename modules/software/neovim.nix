@@ -83,8 +83,5 @@
         };
       };
     };
-
-    # enables copy paste outside of nvim
-    clipboard.register = "unnamedplus";
   };
 }

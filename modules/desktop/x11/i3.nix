@@ -27,6 +27,8 @@
     brightnessctl
     # screenshots
     shutter
+    # shared clipboard (needed by nvim)
+    xclip
   ];
 
   # fix for gnome programs running outside of gnome
