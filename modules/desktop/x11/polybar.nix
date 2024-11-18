@@ -8,6 +8,9 @@
   systemd.services.polybar = {
     enable = lib.mkForce false;
   };
+  systemd.suppressedSystemUnits = [
+    "polybar.service"
+  ];
 
   # configuration of polybar
   home-manager.users.tim = {
