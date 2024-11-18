@@ -60,6 +60,7 @@
     pkgs,
     lib,
     tiling-manager-theme,
+    hostname,
     ...
   }: {
     # enable xdg portal for drag&drop and desktop sharing
@@ -78,6 +79,10 @@
       enable = true;
       wrapperFeatures = {gtk = true;};
       systemd.enable = true;
+
+      extraOptions = [
+        "--unsupported-gpu"
+      ];
 
       config = rec {
         startup = [
@@ -113,6 +118,19 @@
             repeat_rate = "40";
           };
         };
+
+        # set outputs
+        output = if hostname == "tim-pc" then {
+            DP-1 = {
+                pos = "0 0";
+                mode = "2560x1440@144Hz";
+            };
+            HDMI-A-1 = {
+                pos = "-1080 -254";
+                mode = "1920x1080@60Hz";
+                transform = "270";
+            };
+        } else {};
 
         # remove borders of windows
         window.hideEdgeBorders = "both";
