@@ -59,6 +59,7 @@
             "critical-threshold" = 80;
             "format" = "{temperatureC}°C {icon}";
             "format-icons" = [""];
+            "hwmon-path" = ["/sys/class/hwmon/hwmon2/temp1_input" "/sys/class/thermal/thermal_zone0/temp"];
           };
           "cpu" = {
             "format" = "{usage}% ";
