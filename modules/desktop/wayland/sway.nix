@@ -117,20 +117,28 @@
             repeat_delay = "400";
             repeat_rate = "40";
           };
+
+          # disable mouse acceleration for Logitech G604
+          "1133:16517:Logitech_G604" = {
+            accel_profile = "flat";
+          };
         };
 
         # set outputs
-        output = if hostname == "tim-pc" then {
+        output =
+          if hostname == "tim-pc"
+          then {
             DP-1 = {
-                pos = "0 0";
-                mode = "2560x1440@144Hz";
+              pos = "0 0";
+              mode = "2560x1440@144Hz";
             };
             HDMI-A-1 = {
-                pos = "-1080 -254";
-                mode = "1920x1080@60Hz";
-                transform = "270";
+              pos = "-1080 -254";
+              mode = "1920x1080@60Hz";
+              transform = "270";
             };
-        } else {};
+          }
+          else {};
 
         # remove borders of windows
         window.hideEdgeBorders = "both";

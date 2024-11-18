@@ -1,14 +1,13 @@
 {pkgs, ...}: {
-
   # Some default packages for quick and dirty development. For proper
-  # development use custom flakes with `nix develop`. 
+  # development use custom flakes with `nix develop`.
   environment.systemPackages = with pkgs; [
-    # rust 
+    # rust
     cargo
     rustc
     clippy
     rust-analyzer
-    # c and c++ 
+    # c and c++
     gcc
     libgcc
     clang
