@@ -13,6 +13,12 @@
       systemd.enable = false;
 
       settings = let
+        interface =
+          if hostname == "tim-pc"
+          then "enp6s0"
+          else if hostname == "tim-laptop"
+          then "wlp4s0"
+          else "";
         custom-modules = {
           "clock" = {
             "format" = "{:%d-%m-%Y %H:%M}";
@@ -36,12 +42,12 @@
             "on-click" = "pavucontrol";
           };
           "network" = {
-            "interface" = "enp0s25";
+            "interface" = "${interface}";
             "format" = "✗ 🖧";
             "format-disconnected" = "✗ 🖧";
             "format-linked" = "✗ 🖧";
-            "format-ethernet" = "🖧";
-            "tooltip-format-ethernet" = "{ipaddr}/{cidr} 🖧";
+            "format-ethernet" = "{ipaddr}/{cidr}  🖧";
+            "tooltip-format-ethernet" = "{ipaddr}/{cidr}  🖧";
             "tooltip-format-linked" = "{ifname} (No IP)";
             "interval" = 3;
           };
@@ -59,7 +65,11 @@
             "critical-threshold" = 80;
             "format" = "{temperatureC}°C {icon}";
             "format-icons" = [""];
-            "hwmon-path" = ["/sys/class/hwmon/hwmon2/temp1_input" "/sys/class/thermal/thermal_zone0/temp"];
+            "hwmon-path" = [
+              "/sys/class/hwmon/hwmon2/temp1_input"
+              "/sys/class/hwmon/hwmon3/temp1_input"
+              "/sys/class/thermal/thermal_zone0/temp"
+            ];
           };
           "cpu" = {
             "format" = "{usage}% ";
@@ -111,7 +121,7 @@
             output =
               if hostname == "tim-pc"
               then "DP-1"
-              else {};
+              else [];
             layer = "top";
             height = 20;
             modules-center = ["clock"];
@@ -120,7 +130,7 @@
               "sway/mode"
             ];
             modules-right = [
-              "network#wifi"
+              "network"
               "cpu"
               "temperature"
               "memory"
@@ -192,6 +202,16 @@
         #workspaces button.focused {
             background-color: ${tiling-manager-bar-theme.label-focused-background};
         }
+
+        #workspaces button.visible {
+            background-color: ${tiling-manager-bar-theme.label-focused-background};
+        }
+
+        /*
+        #workspaces button.visible {
+            background-color: ${tiling-manager-bar-theme.label-unfocused-background};
+        }
+        */
 
         #workspaces button.urgent {
             background-color: ${tiling-manager-bar-theme.label-urgent-background};
