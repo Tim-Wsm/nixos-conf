@@ -45,8 +45,9 @@
       date = "#${config.lib.stylix.colors.base09}";
       network-connected = "#${config.lib.stylix.colors.base0B}";
       network-disconnected = "#${config.lib.stylix.colors.base0A}";
-      cpu = "#${config.lib.stylix.colors.base08}";
-      temperature = "#${config.lib.stylix.colors.base0D}";
+      cpu = "#${config.lib.stylix.colors.base0D}";
+      gpu = "#${config.lib.stylix.colors.base0A}";
+      temperature = "#${config.lib.stylix.colors.base08}";
       temperature-overheat = "#${config.lib.stylix.colors.base08}";
       memory = "#${config.lib.stylix.colors.base0A}";
       filesystem = "#${config.lib.stylix.colors.base0E}";

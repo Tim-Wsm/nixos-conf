@@ -54,32 +54,44 @@
           "network#wifi" = {
             "interface" = "wlp4s0";
             "format" = "✗ ";
-            "format-wifi" = "{signalStrength}%  ";
-            "format-disconnected" = " ✗";
-            "format-linked" = " ✗";
-            "tooltip-format-linked" = "{ifname} (No IP)";
+            "format-wifi" = "{ipaddr}/{cidr} {signalStrength}%  ";
+            "format-disconnected" = "✗  ";
+            "format-linked" = "✗  ";
             "tooltip-format-wifi" = " {ipaddr}/{cidr} ({essid} {signalStrength}%) ";
             "interval" = 3;
           };
+          "cpu" = {
+            "format" = "{usage}%";
+            "tooltip" = false;
+          };
           "temperature" = {
             "critical-threshold" = 80;
-            "format" = "{temperatureC}°C {icon}";
-            "format-icons" = [""];
+            "format" = "{temperatureC}°C";
             "hwmon-path" = [
               "/sys/class/hwmon/hwmon2/temp1_input"
               "/sys/class/hwmon/hwmon3/temp1_input"
               "/sys/class/thermal/thermal_zone0/temp"
             ];
           };
-          "cpu" = {
-            "format" = "{usage}% ";
-            "tooltip" = false;
-          };
           "memory" = {
-            "format" = "{used:0.1f}GiB ";
-            "tooltip-format" = "{percentage}% of {total:0.1f}GiB ";
+            "format" = "{used:0.1f}GiB";
+            "tooltip-format" = "{percentage}% of {total:0.1f}GiB";
             "interval" = 1;
           };
+          "custom/cpu-icon" = {
+            "format" = " ";
+          };
+
+          "group/cpu-info" = {
+            "orientation" = "horizontal";
+            "modules" = [
+              "cpu"
+              "temperature"
+              "memory"
+              "custom/cpu-icon"
+            ];
+          };
+
           "disk" = {
             "format" = " {free} 🖴";
           };
@@ -115,13 +127,40 @@
             "on-click-right" = "${pkgs.swaynotificationcenter}/bin/swaync-client -d -sw";
             "escape" = true;
           };
+
+          "custom/gpu-utilization" = {
+            "exec" = "nvidia-smi --query-gpu=utilization.gpu --format=csv,nounits,noheader";
+            "format" = "{}%";
+            "interval" = 2;
+          };
+          "custom/gpu-temperature" = {
+            "exec" = "nvidia-smi --query-gpu=temperature.gpu --format=csv,nounits,noheader";
+            "format" = "{}°C";
+            "interval" = 2;
+          };
+          "custom/gpu-memory" = {
+            "exec" = ''
+              nvidia-smi --query-gpu=memory.used --format=csv,nounits,noheader |  awk '{print $1"Mi"}' | numfmt --from=iec-i --to=iec-i |  awk '{print $1"B"}'
+            '';
+            "format" = "{}";
+            "interval" = 2;
+          };
+          "custom/gpu-icon" = {
+            "format" = "󰢮 ";
+          };
+
+          "group/gpu-info" = {
+            "orientation" = "horizontal";
+            "modules" = [
+              "custom/gpu-utilization"
+              "custom/gpu-temperature"
+              "custom/gpu-memory"
+              "custom/gpu-icon"
+            ];
+          };
         };
-        main-bar =
+        default-bar-layout =
           {
-            output =
-              if hostname == "tim-pc"
-              then "DP-1"
-              else [];
             layer = "top";
             height = 20;
             modules-center = ["clock"];
@@ -129,40 +168,52 @@
               "sway/workspaces"
               "sway/mode"
             ];
+          }
+          // custom-modules;
+        default-bar =
+          default-bar-layout
+          // {
             modules-right = [
-              "network"
-              "cpu"
-              "temperature"
-              "memory"
+              "network#wifi"
+              "group/cpu-info"
               "disk"
               "battery"
               "pulseaudio"
               "tray"
               "custom/notification"
             ];
-          }
-          // custom-modules;
-        secondary-bar =
-          {
-            output = "HDMI-A-1";
-            layer = "top";
-            height = 20;
-            modules-center = ["clock"];
-            modules-left = [
-              "sway/workspaces"
-              "sway/mode"
-            ];
+          };
+        main-bar-pc =
+          default-bar-layout
+          // {
+            output = "DP-1";
             modules-right = [
-              "cpu"
-              "temperature"
-              "memory"
+              "network"
+              "group/cpu-info"
+              "group/gpu-info"
+              "disk"
+              "battery"
+              "pulseaudio"
+              "tray"
+              "custom/notification"
             ];
-          }
-          // custom-modules;
-      in [
-        main-bar
-        secondary-bar
-      ];
+          };
+        secondary-bar-pc =
+          default-bar-layout
+          // {
+            output = "HDMI-A-1";
+            modules-right = [
+              "group/cpu-info"
+              "group/gpu-info"
+            ];
+          };
+      in
+        if hostname == "tim-pc"
+        then [
+          main-bar-pc
+          secondary-bar-pc
+        ]
+        else [default-bar];
 
       style = ''
         * {
@@ -224,22 +275,84 @@
 
         #clock,
         #battery,
-        #cpu,
-        #memory,
-        #temperature,
         #network,
         #pulseaudio,
         #tray,
         #mode,
-        #disk
-        #custom-notification {
+        #disk,
+        #custom-notification,
+        #cpu-info,
+        #gpu-info
+        {
             padding: 0 10px;
             margin: 0 4px;
             color:  ${tiling-manager-bar-theme.text};
         }
+
         #clock {
             font-size: 12px;
             border-bottom: 2px solid ${tiling-manager-bar-theme.date};
+        }
+
+        #network.disconnected {
+            background-color: ${tiling-manager-bar-theme.network-disconnected};
+        }
+
+        #network.linked {
+            background-color: ${tiling-manager-bar-theme.network-connected};
+        }
+
+        #network.ethernet {
+            border-bottom: 2px solid ${tiling-manager-bar-theme.network-connected};
+        }
+
+        #network.wifi {
+            border-bottom: 2px solid ${tiling-manager-bar-theme.network-connected};
+        }
+
+        #cpu {
+            padding: 0 5px;
+        }
+        #temperature {
+            padding: 0 5px;
+        }
+        #temperature.critical {
+            padding: 0 5px;
+            background-color: ${tiling-manager-bar-theme.temperature-overheat};
+        }
+        #memory {
+            padding: 0 5px;
+        }
+        #custom-cpu-icon{
+            padding: 0 5px;
+        }
+        #cpu-info {
+            padding: 0 0px;
+            border-bottom: 2px solid ${tiling-manager-bar-theme.cpu};
+        }
+
+
+        #custom-gpu-utilization {
+            padding: 0 5px;
+        }
+        #custom-gpu-temperature {
+            padding: 0 5px;
+        }
+        #custom-gpu-memory {
+            padding: 0 5px;
+        }
+        #custom-gpu-icon {
+            padding: 0 5px;
+        }
+        #gpu-info {
+            padding: 0 0px;
+            border-bottom: 2px solid ${tiling-manager-bar-theme.gpu};
+        }
+
+
+        #disk {
+            color: ${tiling-manager-bar-theme.text};
+            border-bottom: 2px solid ${tiling-manager-bar-theme.filesystem};
         }
 
         #battery {
@@ -269,34 +382,6 @@
             animation-direction: alternate;
         }
 
-        #disk {
-            color: ${tiling-manager-bar-theme.text};
-            border-bottom: 2px solid ${tiling-manager-bar-theme.filesystem};
-        }
-
-        #cpu {
-            border-bottom: 2px solid ${tiling-manager-bar-theme.cpu};
-        }
-
-        #memory {
-            border-bottom: 2px solid ${tiling-manager-bar-theme.memory};
-        }
-
-        #network.disconnected {
-            background-color: ${tiling-manager-bar-theme.network-disconnected};
-        }
-
-        #network.linked {
-            background-color: ${tiling-manager-bar-theme.network-connected};
-        }
-
-        #network.ethernet {
-            border-bottom: 2px solid ${tiling-manager-bar-theme.network-connected};
-        }
-
-        #network.wifi {
-            border-bottom: 2px solid ${tiling-manager-bar-theme.network-connected};
-        }
 
         #pulseaudio {
             border-bottom: 2px solid ${tiling-manager-bar-theme.sound};
@@ -306,18 +391,11 @@
             background-color:${tiling-manager-bar-theme.sound-muted};
         }
 
-        #temperature {
-            border-bottom: 2px solid ${tiling-manager-bar-theme.temperature};
-        }
-
-        #temperature.critical {
-            background-color: ${tiling-manager-bar-theme.temperature-overheat};
-            border-bottom: 2px solid ${tiling-manager-bar-theme.temperature-overheat};
-        }
-
         #custom-notification {
           font-family: "NotoSansMono Nerd Font";
         }
+
+
       '';
     };
   };
