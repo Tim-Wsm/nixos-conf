@@ -41,6 +41,11 @@
       expandtab = true;
     };
 
+    # treesitter support
+    plugins.treesitter = {
+        enable = true;
+    };
+
     # lsp support
     plugins.lsp = {
       enable = true;
@@ -73,6 +78,7 @@
           {name = "nvim_lsp";}
           {name = "path";}
           {name = "buffer";}
+          {name = "orgmode";}
         ];
 
         mapping = {
@@ -82,6 +88,11 @@
           "<Up>" = "cmp.mapping.select_prev_item()";
         };
       };
+    };
+
+    # enable orgmode plugin
+    plugins.orgmode = {
+        enable = true;
     };
   };
 }
