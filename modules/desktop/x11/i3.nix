@@ -25,8 +25,6 @@
     feh
     # backlight
     brightnessctl
-    # screenshots
-    shutter
     # shared clipboard (needed by nvim)
     xclip
   ];
