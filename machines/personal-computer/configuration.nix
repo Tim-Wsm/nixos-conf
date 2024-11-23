@@ -25,7 +25,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # TODO switch to latest kernel once nvidia is updated
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_11;
+
 
   # Networking
   networking.hostName = "tim-pc"; # Define your hostname.
@@ -52,10 +55,7 @@
     open = true;
 
     # Use the latest stable version of the driver
-    # TODO: switch back to stable, once the driver compiles for the most recent
-    # linux kernel
-    # package = config.boot.kernelPackages.nvidiaPackages.stable;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   # Disable mouse acceleration glbally for this machine
