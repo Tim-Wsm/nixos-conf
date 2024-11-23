@@ -6,6 +6,7 @@
     # messaging
     telegram-desktop
     discord
+    vesktop
     # screenshots & simple foto editing
     shutter
     gthumb
