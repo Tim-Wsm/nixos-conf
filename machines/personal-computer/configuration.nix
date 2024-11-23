@@ -52,7 +52,10 @@
     open = true;
 
     # Use the latest stable version of the driver
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # TODO: switch back to stable, once the driver compiles for the most recent
+    # linux kernel
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   # Disable mouse acceleration glbally for this machine
