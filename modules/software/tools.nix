@@ -14,5 +14,7 @@
     # video playback
     vlc
     mpv
+    # image upscaling
+    upscayl
   ];
 }
