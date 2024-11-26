@@ -43,7 +43,7 @@
 
     # treesitter support
     plugins.treesitter = {
-        enable = true;
+      enable = true;
     };
 
     # lsp support
@@ -92,7 +92,7 @@
 
     # enable orgmode plugin
     plugins.orgmode = {
-        enable = true;
+      enable = true;
     };
   };
 }

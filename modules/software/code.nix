@@ -15,6 +15,9 @@
     clang-tools
     cmake
     gnumake
+    # debgugging
+    gdb
+    valgrind
     # python
     python3
     # ocaml

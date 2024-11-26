@@ -29,7 +29,6 @@
   #boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelPackages = pkgs.linuxPackages_6_11;
 
-
   # Networking
   networking.hostName = "tim-pc"; # Define your hostname.
   networking.networkmanager.enable = true;
