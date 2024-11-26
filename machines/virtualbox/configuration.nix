@@ -29,6 +29,11 @@
   networking.hostName = "tim-vbox"; # Define your hostname.
   networking.networkmanager.enable = true;
 
+  # Pass hostname to home-manager
+  home-manager.extraSpecialArgs = {
+    hostname = "tim-vbox";
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tim = {
     isNormalUser = true;
