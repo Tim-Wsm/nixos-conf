@@ -17,6 +17,7 @@
     usbutils
     # editors
     vim
+    neovim
     # nixos helpers
     nh
     nvd

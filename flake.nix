@@ -71,5 +71,15 @@
         ./machines/virtualbox/configuration.nix
       ];
     };
+
+    nixosConfigurations.tim-dbg = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      # pass the flake inputs into all sub-modules
+      specialArgs = {inherit inputs;};
+
+      modules = [
+        ./machines/virtualbox-debug/configuration.nix
+      ];
+    };
   };
 }

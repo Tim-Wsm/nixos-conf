@@ -91,8 +91,6 @@
     ];
   };
 
-  
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tim = {
     isNormalUser = true;
@@ -104,8 +102,7 @@
   # enable virtualization via virtualbox
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.host.enableExtensionPack = true;
-  users.extraGroups.vboxusers.members = [ "tim" ];
-
+  users.extraGroups.vboxusers.members = ["tim"];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

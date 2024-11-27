@@ -1,5 +1,4 @@
 {...}: {
-
   # configure firefox
   programs.firefox = {
     enable = true;
