@@ -18,10 +18,6 @@
     # editors
     vim
     neovim
-    # nixos helpers
-    nh
-    nvd
-    nix-output-monitor
   ];
 
   # setup fish as default  shell

@@ -7,10 +7,6 @@
     inputs.nixvim.nixosModules.nixvim
   ];
 
-  environment.systemPackages = with pkgs; [
-    alejandra
-  ];
-
   # configuration of neovim
   # this does not use home manager, such that this can be used to edit config
   # files as root
