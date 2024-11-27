@@ -16,5 +16,7 @@
     mpv
     # image upscaling
     upscayl
+    # pdf editing
+    xournalpp
   ];
 }
