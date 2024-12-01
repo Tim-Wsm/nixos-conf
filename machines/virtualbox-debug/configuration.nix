@@ -49,5 +49,4 @@
       options = "caps:escape";
     };
   };
-
 }

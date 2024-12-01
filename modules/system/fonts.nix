@@ -5,13 +5,20 @@
 }: {
   # installs some basic fonts
   fonts.packages = with pkgs; [
+    # basic fonts
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
-    fira-code
-    fira-code-symbols
-    nerdfonts
+    #nerdfonts
+    nerd-fonts.symbols-only
+    nerd-fonts.noto
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.hack
+    nerd-fonts.fira-mono
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.dejavu-sans-mono
   ];
 
   # configure fonts via stylix
