@@ -10,7 +10,6 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/system/locale.nix
-    ../../modules/system/shell.nix
   ];
 
   # Bootloader
@@ -28,9 +27,15 @@
   users.users.tim = {
     isNormalUser = true;
     description = "tim";
-    extraGroups = ["networkmanager" "wheel" "video"];
+    extraGroups = ["networkmanager" "wheel"];
     packages = [];
   };
+
+  # Add git and neovim to work with nix config and nixpkgs
+  environment.systemPackages = with pkgs; [
+    git
+    neovim
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -40,13 +45,12 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
 
-  # debug setup uses a default i3 and lightdm for graphics
-  services.xserver = {
+  # increase the number of open files (fixes some build issues with older nix
+  # versions)
+  systemd.extraConfig = "DefaultLimitNOFILE=4096";
+
+  # debug setup uses a default sway for graphics
+  programs.sway = {
     enable = true;
-    windowManager.i3.enable = true;
-    xkb = {
-      layout = "de";
-      options = "caps:escape";
-    };
   };
 }
