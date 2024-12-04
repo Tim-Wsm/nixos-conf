@@ -15,7 +15,8 @@
     # video playback
     vlc
     mpv
-    # image upscaling
+    # image editing
+    imagemagick
     upscayl
     # pdf editing
     xournalpp
