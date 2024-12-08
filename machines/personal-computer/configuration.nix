@@ -25,9 +25,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Kernel
-  # TODO switch to latest kernel once nvidia is updated
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_6_11;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Networking
   networking.hostName = "tim-pc"; # Define your hostname.
