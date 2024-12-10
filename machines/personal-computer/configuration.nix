@@ -93,14 +93,14 @@
   users.users.tim = {
     isNormalUser = true;
     description = "tim";
-    extraGroups = ["networkmanager" "wheel" "video"];
+    extraGroups = ["networkmanager" "wheel" "video" "libvirtd"];
     packages = [];
   };
 
-  # enable virtualization via virtualbox
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-  users.extraGroups.vboxusers.members = ["tim"];
+  # enable virtualization via virt-manager
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
