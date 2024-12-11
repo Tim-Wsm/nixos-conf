@@ -37,6 +37,13 @@
     neovim
   ];
 
+  # delete content of /tmp/ on reboot (prevents pile up of old build files)
+  boot.tmp.cleanOnBoot = true;
+
+  # increase the number of open files (fixes some build issues with older nix
+  # versions)
+  systemd.extraConfig = "DefaultLimitNOFILE=4096";
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -44,10 +51,6 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
-  # increase the number of open files (fixes some build issues with older nix
-  # versions)
-  systemd.extraConfig = "DefaultLimitNOFILE=4096";
 
   # debug setup uses a default sway for graphics
   programs.sway = {
