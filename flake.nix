@@ -68,7 +68,7 @@
       modules = [
         home-manager.nixosModules.default
         stylix.nixosModules.stylix
-        ./machines/vm-debug/configuration.nix
+        ./machines/virtualbox/configuration.nix
       ];
     };
 
@@ -78,7 +78,7 @@
       specialArgs = {inherit inputs;};
 
       modules = [
-        ./machines/virtualbox-debug/configuration.nix
+        ./machines/vm-debug/configuration.nix
       ];
     };
   };
