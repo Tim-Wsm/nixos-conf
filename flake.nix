@@ -68,7 +68,7 @@
       modules = [
         home-manager.nixosModules.default
         stylix.nixosModules.stylix
-        ./machines/virtualbox/configuration.nix
+        ./machines/vm-debug/configuration.nix
       ];
     };
 
