@@ -23,13 +23,29 @@
   networking.hostName = "tim-dbg"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.tim = {
+  # define vm test user
+  users.users.nixosvmtest = {
+    #isSystemUser = true;
     isNormalUser = true;
-    description = "tim";
+    initialPassword = "test";
     extraGroups = ["networkmanager" "wheel"];
-    packages = [];
   };
+
+  # define memory and number of cores for the vm
+  virtualisation.vmVariant = {
+    virtualisation = {
+      memorySize = 2048; # Use 2048MiB memory.
+      cores = 4;
+    };
+  };
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # users.users.tim = {
+  #   isNormalUser = true;
+  #   description = "tim";
+  #   extraGroups = ["networkmanager" "wheel"];
+  #   packages = [];
+  # };
 
   # Add git and neovim to work with nix config and nixpkgs
   environment.systemPackages = with pkgs; [
