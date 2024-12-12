@@ -9,28 +9,11 @@
   boot.kernelModules = [];
   boot.extraModulePackages = [];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/cded751e-2269-499b-afa3-f0641eaed21b";
-    fsType = "ext4";
-  };
-
-  boot.initrd.luks.devices."luks-377e5777-94b3-456c-83e0-caec2ae32501".device = "/dev/disk/by-uuid/377e5777-94b3-456c-83e0-caec2ae32501";
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/FC55-B363";
-    fsType = "vfat";
-    options = ["fmask=0077" "dmask=0077"];
-  };
-
-  swapDevices = [];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp0s3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  virtualisation.virtualbox.guest.enable = true;
 }
