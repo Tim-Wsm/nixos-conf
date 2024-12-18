@@ -9,6 +9,7 @@
     wget
     curl
     htop
+    btop
     tree
     killall
     calc
