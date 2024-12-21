@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   # configure steam
   programs.steam = {
     enable = true;
@@ -8,4 +8,10 @@
     # required for some games (see https://nixos.wiki/wiki/Steam)
     gamescopeSession.enable = true;
   };
+
+  # other programs for gaming
+  environment.systemPackages = with pkgs; [
+    # bottles for windows games
+    bottles
+  ];
 }
