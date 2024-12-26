@@ -9,5 +9,7 @@
     nix-output-monitor
     # autoformater
     alejandra
+    # nixpkg review tool
+    nixpkgs-review
   ];
 }
