@@ -2,6 +2,7 @@
   # import waybar
   imports = [
     ./waybar.nix
+    ./swaync.nix
   ];
 
   # dependencies for my sway environment

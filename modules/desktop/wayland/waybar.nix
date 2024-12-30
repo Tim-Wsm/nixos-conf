@@ -157,11 +157,6 @@
               "custom/gpu-icon"
             ];
           };
-          "custom/screenshot" = {
-            "format" = "📷 ";
-            "tooltip" = "false";
-            "on-click" = "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | wl-copy";
-          };
         };
         default-bar-layout =
           {
@@ -184,7 +179,6 @@
               "battery"
               "pulseaudio"
               "tray"
-              "custom/screenshot"
               "custom/notification"
             ];
           };
@@ -200,7 +194,6 @@
               "battery"
               "pulseaudio"
               "tray"
-              "custom/screenshot"
               "custom/notification"
             ];
           };
@@ -280,7 +273,6 @@
         #mode,
         #disk,
         #custom-notification,
-        #custom-screenshot,
         #cpu-info,
         #gpu-info
         {
@@ -391,10 +383,6 @@
 
         #custom-notification {
           font-family: "NotoSansMono Nerd Font";
-        }
-
-        #custom-screenshot {
-          padding: 0 5px;
         }
       '';
     };
