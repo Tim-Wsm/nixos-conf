@@ -148,7 +148,6 @@
           "custom/gpu-icon" = {
             "format" = "󰢮 ";
           };
-
           "group/gpu-info" = {
             "orientation" = "horizontal";
             "modules" = [
@@ -157,6 +156,11 @@
               "custom/gpu-memory"
               "custom/gpu-icon"
             ];
+          };
+          "custom/screenshot" = {
+            "format" = "📷 ";
+            "tooltip" = "false";
+            "on-click" = "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | wl-copy";
           };
         };
         default-bar-layout =
@@ -180,6 +184,7 @@
               "battery"
               "pulseaudio"
               "tray"
+              "custom/screenshot"
               "custom/notification"
             ];
           };
@@ -195,6 +200,7 @@
               "battery"
               "pulseaudio"
               "tray"
+              "custom/screenshot"
               "custom/notification"
             ];
           };
@@ -258,18 +264,11 @@
             background-color: ${tiling-manager-bar-theme.label-focused-background};
         }
 
-        /*
-        #workspaces button.visible {
-            background-color: ${tiling-manager-bar-theme.label-unfocused-background};
-        }
-        */
-
         #workspaces button.urgent {
             background-color: ${tiling-manager-bar-theme.label-urgent-background};
         }
 
         #mode {
-            /* background-color: #64727D; */
             background-color: ${tiling-manager-bar-theme.label-mode-background};
         }
 
@@ -281,6 +280,7 @@
         #mode,
         #disk,
         #custom-notification,
+        #custom-screenshot,
         #cpu-info,
         #gpu-info
         {
@@ -349,7 +349,6 @@
             border-bottom: 2px solid ${tiling-manager-bar-theme.gpu};
         }
 
-
         #disk {
             color: ${tiling-manager-bar-theme.text};
             border-bottom: 2px solid ${tiling-manager-bar-theme.filesystem};
@@ -382,7 +381,6 @@
             animation-direction: alternate;
         }
 
-
         #pulseaudio {
             border-bottom: 2px solid ${tiling-manager-bar-theme.sound};
         }
@@ -395,7 +393,9 @@
           font-family: "NotoSansMono Nerd Font";
         }
 
-
+        #custom-screenshot {
+          padding: 0 5px;
+        }
       '';
     };
   };

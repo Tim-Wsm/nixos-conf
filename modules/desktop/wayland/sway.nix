@@ -180,7 +180,7 @@
 
             # screenshots
             "XF86Explorer" = ''
-              grim -g "$(slurp)" $(xdg-user-dir)/Screenshots/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+              ${grim} -g "$(${slurp})" $(xdg-user-dir)/Screenshots/$(date +'%Y-%m-%d-%H%M%S_grim.png')
             '';
 
             # control center

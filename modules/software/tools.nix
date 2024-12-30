@@ -9,7 +9,6 @@
     discord
     vesktop
     # screenshots & simple foto editing
-    shutter
     gthumb
     gimp
     # video playback
