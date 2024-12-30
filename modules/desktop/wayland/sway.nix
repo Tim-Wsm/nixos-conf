@@ -179,7 +179,9 @@
             "XF86AudioMute" = "exec '${pactl} set-sink-mute 0 toggle'";
 
             # screenshots
-            "XF86Explorer" = "exec ${grim} -g '$(${slurp})' $(xdg-user-dir)/Screenshots/$(date +'%Y-%m-%d-%H%M%S_grim.png')";
+            "XF86Explorer" = ''
+              grim -g "$(slurp)" $(xdg-user-dir)/Screenshots/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+            '';
 
             # control center
             "${mod}+Shift+n" = "exec ${swaync-client} -t -sw";
