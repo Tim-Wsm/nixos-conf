@@ -25,6 +25,8 @@
     swaynotificationcenter
     # wallpaper
     swaybg
+    # music control
+    playerctl
   ];
 
   # Use gdm as the display manager. Despite the name of the property this
@@ -156,6 +158,7 @@
           grim = "${pkgs.grim}/bin/grim";
           slurp = "${pkgs.slurp}/bin/slurp";
           swaync-client = "${pkgs.swaynotificationcenter}/bin/swaync-client";
+          playerctl = "${pkgs.playerctl}/bin/playerctl";
         in
           lib.mkOptionDefault {
             # lock the screen
@@ -186,6 +189,11 @@
 
             # control center
             "${mod}+Shift+n" = "exec ${swaync-client} -t -sw";
+
+            # music control
+            "XF86AudioPlay" = "exec ${playerctl} play-pause";
+            "XF86AudioPrev" = "exec ${playerctl} previous";
+            "XF86AudioNext" = "exec ${playerctl} next";
           };
 
         # set colors
