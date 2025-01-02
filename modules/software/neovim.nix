@@ -62,6 +62,12 @@
           installRustc = true;
           installCargo = true;
         };
+
+        # ocaml 
+        ocamllsp = {
+            enable = true;
+            package = pkgs.ocamlPackages.ocaml-lsp;
+        };
       };
     };
 
