@@ -19,6 +19,17 @@
           else if hostname == "tim-laptop"
           then "wlp4s0"
           else "";
+        waybar-music-status = pkgs.writeShellScriptBin "waybar-music-status" ''
+            if [[ $(playerctl status) == "Playing" ]]; then
+                text="$(playerctl metadata --format '{{ artist }} | {{ title }}   𝅘𝅥𝅮')"
+                echo {\"text\": \"$text\", \"class\": \"playing\"}
+            elif [[ $(playerctl status) == "Paused" ]]; then 
+                text="$(playerctl metadata --format '{{ artist }} | {{ title }}   𝅘𝅥𝅮')"
+                echo {\"text\": \"$text\", \"class\": \"paused\"}
+            else 
+                echo {\"text\": \"\", \"class\": \"disconnected\"}
+            fi
+        '';
         custom-modules = {
           "clock" = {
             "format" = "{:%d-%m-%Y %H:%M}";
@@ -157,6 +168,15 @@
               "custom/gpu-icon"
             ];
           };
+
+        "custom/music" = {
+            "exec" = "${waybar-music-status}/bin/waybar-music-status";
+            "return-type" = "json";
+            "format-disconnected" = "";
+            "format-playing" = "{}";
+            "format-paused" = "{}";
+            "interval" = 1;
+          };
         };
         default-bar-layout =
           {
@@ -173,6 +193,7 @@
           default-bar-layout
           // {
             modules-right = [
+              "custom/music"
               "network#wifi"
               "group/cpu-info"
               "disk"
@@ -187,6 +208,7 @@
           // {
             output = "DP-1";
             modules-right = [
+              "custom/music"
               "network"
               "group/cpu-info"
               "group/gpu-info"
@@ -202,6 +224,7 @@
           // {
             output = "HDMI-A-1";
             modules-right = [
+              "custom/music"
               "group/cpu-info"
               "group/gpu-info"
             ];
@@ -235,7 +258,6 @@
         window#waybar.hidden {
             opacity: 0.2;
         }
-
 
         #workspaces button {
             padding: 0 5px;
@@ -274,7 +296,8 @@
         #disk,
         #custom-notification,
         #cpu-info,
-        #gpu-info
+        #gpu-info,
+        #custom-music
         {
             padding: 0 10px;
             margin: 0 4px;
@@ -383,6 +406,15 @@
 
         #custom-notification {
           font-family: "NotoSansMono Nerd Font";
+        }
+
+        #custom-music {
+            border-bottom: 2px solid ${tiling-manager-bar-theme.sound};
+        }
+
+        #custom-music.paused {
+            background-color:${tiling-manager-bar-theme.sound-muted};
+            border-bottom: 2px solid ${tiling-manager-bar-theme.sound};
         }
       '';
     };
