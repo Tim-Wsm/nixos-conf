@@ -61,14 +61,20 @@
           enable = true;
           installRustc = true;
           installCargo = true;
+          installRustfmt = true;
         };
 
-        # ocaml 
+        # ocaml
         ocamllsp = {
-            enable = true;
-            package = pkgs.ocamlPackages.ocaml-lsp;
+          enable = true;
+          package = pkgs.ocamlPackages.ocaml-lsp;
         };
       };
+    };
+
+    # format on save
+    plugins.lsp-format = {
+      enable = true;
     };
 
     # autocompletion
