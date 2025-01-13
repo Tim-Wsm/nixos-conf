@@ -48,11 +48,12 @@
     powerManagement.enable = false;
     powerManagement.finegrained = false;
 
-    # Use open source kernel module (this is NOT "nouveau"
+    # Use open source kernel module (this is NOT "nouveau")
     open = true;
 
     # Use the latest stable version of the driver
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    #package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   # Disable mouse acceleration glbally for this machine
