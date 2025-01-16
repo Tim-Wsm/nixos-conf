@@ -9,8 +9,8 @@
   environment.systemPackages = with pkgs; [
     # terminal
     alacritty
-    # application runner
-    rofi-wayland
+    #
+    #rofi-wayland
     # backlight
     brightnessctl
     # wayland utils
@@ -77,6 +77,13 @@
       config.common.default = "*";
     };
 
+    # rofi configuration (the application runner)
+    programs.rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+      font = lib.mkForce "Noto Sans Mono 14";
+    };
+
     # sway configuration
     wayland.windowManager.sway = {
       enable = true;
@@ -108,7 +115,7 @@
 
         # configure launcher and terminal
         modifier = "Mod4";
-        menu = "${pkgs.rofi-wayland}/bin/rofi -show run";
+        menu = "${pkgs.rofi-wayland}/bin/rofi -show drun";
         terminal = "${pkgs.alacritty}/bin/alacritty";
 
         # set inputs
