@@ -19,17 +19,20 @@
           else if hostname == "tim-laptop"
           then "wlp4s0"
           else "";
-        waybar-music-status = pkgs.writeShellScriptBin "waybar-music-status" ''
-            if [[ $(playerctl status) == "Playing" ]]; then
-                text="$(playerctl metadata --format '{{ artist }} | {{ title }}   𝅘𝅥𝅮')"
+        waybar-music-status = let
+          playerctl = "${pkgs.playerctl}/bin/playerctl";
+        in
+          pkgs.writeShellScriptBin "waybar-music-status" ''
+            if [[ $(${playerctl} status) == "Playing" ]]; then
+                text="$(${playerctl} metadata --format '{{ artist }} | {{ title }}   𝅘𝅥𝅮' | sed s/\"/\\\\\"/g)"
                 echo {\"text\": \"$text\", \"class\": \"playing\"}
-            elif [[ $(playerctl status) == "Paused" ]]; then 
-                text="$(playerctl metadata --format '{{ artist }} | {{ title }}   𝅘𝅥𝅮')"
+            elif [[ $(${playerctl} status) == "Paused" ]]; then
+                text="$(${playerctl} metadata --format '{{ artist }} | {{ title }}   𝅘𝅥𝅮' | sed s/\"/\\\\\"/g)"
                 echo {\"text\": \"$text\", \"class\": \"paused\"}
-            else 
+            else
                 echo {\"text\": \"\", \"class\": \"disconnected\"}
             fi
-        '';
+          '';
         custom-modules = {
           "clock" = {
             "format" = "{:%d-%m-%Y %H:%M}";
@@ -169,13 +172,14 @@
             ];
           };
 
-        "custom/music" = {
+          "custom/music" = {
             "exec" = "${waybar-music-status}/bin/waybar-music-status";
             "return-type" = "json";
             "format-disconnected" = "";
             "format-playing" = "{}";
             "format-paused" = "{}";
             "interval" = 1;
+            "on-click" = "${pkgs.playerctl}/bin/playerctl play-pause";
           };
         };
         default-bar-layout =
