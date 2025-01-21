@@ -13,19 +13,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # use nixvim to manage the neovim install and configuration
-    nixvim = {
-      # use the main branch of nixvim
-      url = "github:nix-community/nixvim";
-      # require nixvim to use the same nixpkgs channel as the system
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # use stylix for consistent themes
     stylix = {
       # use the main branch of stylix
       url = "github:danth/stylix";
       # require stylix to use the same nixpkgs channel as the system
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # use my custom nixvim config to manage the neovim install and configuration
+    nixvim-flake = {
+      url = "github:Tim-Wsm/nixvim-conf";
+      # require nixvim to use the same nixpkgs channel as the system
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -36,10 +35,13 @@
     stylix,
     ...
   } @ inputs: {
-    nixosConfigurations.tim-pc = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.tim-pc = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       # pass the flake inputs into all sub-modules
-      specialArgs = {inherit inputs;};
+      specialArgs = {
+        inherit inputs;
+        inherit system;
+      };
 
       modules = [
         home-manager.nixosModules.default
@@ -48,10 +50,13 @@
       ];
     };
 
-    nixosConfigurations.tim-laptop = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.tim-laptop = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       # pass the flake inputs into all sub-modules
-      specialArgs = {inherit inputs;};
+      specialArgs = {
+        inherit inputs;
+        inherit system;
+      };
 
       modules = [
         home-manager.nixosModules.default
@@ -60,10 +65,13 @@
       ];
     };
 
-    nixosConfigurations.tim-vbox = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.tim-vbox = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       # pass the flake inputs into all sub-modules
-      specialArgs = {inherit inputs;};
+      specialArgs = {
+        inherit inputs;
+        inherit system;
+      };
 
       modules = [
         home-manager.nixosModules.default
