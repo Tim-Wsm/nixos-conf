@@ -27,6 +27,13 @@
       # require nixvim to use the same nixpkgs channel as the system
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # use nixos-artwork for wallpaper and logo
+    nixos-artwork = {
+      url = "github:NixOS/nixos-artwork";
+      # this is not a flake
+      flake = false;
+    };
   };
 
   outputs = {
