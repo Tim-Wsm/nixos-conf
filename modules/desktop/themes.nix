@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }: {
   # configures stylix
@@ -9,10 +10,7 @@
     enable = true;
 
     # set wallpaper
-    image = pkgs.fetchurl {
-      url = "https://github.com/NixOS/nixos-artwork/blob/master/wallpapers/nix-wallpaper-binary-black_8k.png?raw=true";
-      sha256 = "MxEgvzWmdqMeI5GeI6Hzci6yd5iL44NDXyKQOuw+fLY=";
-    };
+    image = "${inputs.nixos-artwork}/wallpapers/nix-wallpaper-binary-black_8k.png";
 
     # prefere dark mode
     polarity = "dark";
