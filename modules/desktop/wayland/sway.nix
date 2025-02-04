@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   # import waybar
   imports = [
     ./waybar.nix
@@ -95,7 +99,9 @@
       ];
 
       config = rec {
-        startup = [
+        startup = let
+          nix-update-notification-daemon = pkgs.callPackage ./../../scripts/nix-update-notification-daemon.nix {inherit inputs;};
+        in [
           {
             command = "${pkgs.waybar}/bin/waybar";
             always = true;
@@ -103,6 +109,7 @@
           {command = "${pkgs.swaynotificationcenter}/bin/swaync";}
           {command = "${pkgs.networkmanagerapplet}/bin/nm-applet";}
           {command = "${pkgs.blueman}/bin/blueman-applet";}
+          {command = "${nix-update-notification-daemon}/bin/nix-update-notification-daemon";}
         ];
 
         # disable default bar
