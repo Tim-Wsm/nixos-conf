@@ -20,6 +20,7 @@
     valgrind
     # python
     python3
+    python3Packages.virtualenv
     # ocaml
     ocaml
     opam
