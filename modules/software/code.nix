@@ -8,15 +8,7 @@
     clippy
     rust-analyzer
     rustfmt
-    # c and c++
-    gcc
-    libgcc
-    clang
-    libclang
-    clang-tools
-    cmake
-    gnumake
-    # debgugging
+    # c debgugging
     gdb
     valgrind
     # python
