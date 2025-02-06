@@ -7,6 +7,7 @@
     rustc
     clippy
     rust-analyzer
+    rustfmt
     # c and c++
     gcc
     libgcc
