@@ -102,10 +102,7 @@
         startup = let
           nix-update-notification-daemon = pkgs.callPackage ./../../scripts/nix-update-notification-daemon.nix {inherit inputs;};
         in [
-          {
-            command = "${pkgs.waybar}/bin/waybar";
-            always = true;
-          }
+          {command = "${pkgs.waybar}/bin/waybar";}
           {command = "${pkgs.swaynotificationcenter}/bin/swaync";}
           {command = "${pkgs.networkmanagerapplet}/bin/nm-applet";}
           {command = "${pkgs.blueman}/bin/blueman-applet";}
