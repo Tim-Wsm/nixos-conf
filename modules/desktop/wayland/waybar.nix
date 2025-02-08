@@ -24,10 +24,10 @@
         in
           pkgs.writeShellScriptBin "waybar-music-status" ''
             if [[ $(${playerctl} status) == "Playing" ]]; then
-                text="$(${playerctl} metadata --format '{{ artist }} | {{ title }}   𝅘𝅥𝅮' | sed s/\"/\\\\\"/g)"
+                text="$(${playerctl} metadata --format '{{ artist }} | {{ title }}   𝅘𝅥𝅮' | sed s/\"/\\\\\"/g | sed s/\&/\&amp\;/g)"
                 echo {\"text\": \"$text\", \"class\": \"playing\"}
             elif [[ $(${playerctl} status) == "Paused" ]]; then
-                text="$(${playerctl} metadata --format '{{ artist }} | {{ title }}   𝅘𝅥𝅮' | sed s/\"/\\\\\"/g)"
+                text="$(${playerctl} metadata --format '{{ artist }} | {{ title }}   𝅘𝅥𝅮' | sed s/\"/\\\\\"/g | sed s/\&/\&amp\;/g)"
                 echo {\"text\": \"$text\", \"class\": \"paused\"}
             else
                 echo {\"text\": \"\", \"class\": \"disconnected\"}
