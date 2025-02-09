@@ -7,7 +7,6 @@
     telegram-desktop
     signal-desktop
     discord
-    vesktop
     # screenshots & simple foto editing
     gthumb
     gimp
