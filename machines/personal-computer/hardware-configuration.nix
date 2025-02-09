@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -30,6 +29,14 @@
     options = ["fmask=0077" "dmask=0077"];
   };
 
+  # /nix is stored on a different drive
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/8b3479d8-87f2-4976-ba41-66a303447738";
+    fsType = "ext4";
+    neededForBoot = true;
+    options = ["noatime"];
+  };
+
   swapDevices = [];
 
   fileSystems."/home/tim/Share" = {
@@ -43,7 +50,6 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
