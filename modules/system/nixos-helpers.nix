@@ -11,5 +11,7 @@
     alejandra
     # nixpkg review tool
     nixpkgs-review
+    # github cli
+    gh
   ];
 }
