@@ -109,6 +109,10 @@
           "disk" = {
             "format" = " {free} 🖴";
           };
+          "disk#nix" = {
+            "format" = " {free} 🖴";
+            "path" = "/nix";
+          };
           "battery" = {
             "states" = {
               "warning" = 30;
@@ -217,6 +221,7 @@
               "group/cpu-info"
               "group/gpu-info"
               "disk"
+              "disk#nix"
               "battery"
               "pulseaudio"
               "tray"
