@@ -1,5 +1,4 @@
 {
-  pkgs,
   inputs,
   system,
   ...
@@ -10,10 +9,4 @@
       neovim = inputs.nixvim-flake.packages.${system}.default;
     };
   in [nixvim-overlay];
-
-  # optional dependencies for my custom nixvim configuration
-  environment.systemPackages = [
-    pkgs.ripgrep
-    pkgs.alejandra
-  ];
 }
