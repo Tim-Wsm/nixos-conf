@@ -13,8 +13,6 @@
   environment.systemPackages = with pkgs; [
     # terminal
     alacritty
-    #
-    #rofi-wayland
     # backlight
     brightnessctl
     # wayland utils
