@@ -13,6 +13,7 @@
     tree
     killall
     calc
+    fzf
     # hardware info
     lshw
     usbutils
