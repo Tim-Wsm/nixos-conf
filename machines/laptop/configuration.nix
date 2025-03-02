@@ -15,7 +15,8 @@
     inputs.home-manager.nixosModules.default
     ../../modules/system/default.nix
     ../../modules/system/bluetooth.nix
-    ../../modules/desktop/default.nix
+    ../../modules/desktop/themes.nix
+    ../../modules/desktop/wayland/sway.nix
     ../../modules/software/code.nix
     ../../modules/software/neovim.nix
     ../../modules/software/tools.nix
