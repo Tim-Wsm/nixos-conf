@@ -16,7 +16,11 @@
     ../../modules/system/default.nix
     ../../modules/system/bluetooth.nix
     ../../modules/desktop/default.nix
-    ../../modules/software/default.nix
+    ../../modules/software/code.nix
+    ../../modules/software/neovim.nix
+    ../../modules/software/tools.nix
+    ../../modules/software/browser.nix
+    ../../modules/software/e-mail.nix
   ];
 
   # Bootloader
