@@ -15,6 +15,7 @@
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
     ../../modules/system/default.nix
+    ../../modules/system/bluetooth.nix
     ../../modules/desktop/default.nix
     ../../modules/software/default.nix
     ../../modules/scripts/default.nix
