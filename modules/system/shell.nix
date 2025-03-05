@@ -14,6 +14,7 @@
     killall
     calc
     fzf
+    bat
     # hardware info
     lshw
     usbutils
