@@ -18,5 +18,7 @@
     upscayl
     # pdf editing
     xournalpp
+    # learning
+    anki
   ];
 }
