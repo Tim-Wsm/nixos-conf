@@ -1,6 +1,9 @@
 {pkgs, ...}: {
   # programs without special configuration
   environment.systemPackages = with pkgs; [
+    # file browsing
+    nautilus
+    nautilus-open-any-terminal
     # password management
     keepassxc
     # messaging
@@ -13,10 +16,13 @@
     # video playback
     vlc
     mpv
-    # image editing
+    # image viewing + editing
+    feh
     imagemagick
     upscayl
-    # pdf editing
+    # pdf reading + editing
+    okular
+    evince
     xournalpp
     # learning
     anki
