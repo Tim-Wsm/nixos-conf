@@ -18,6 +18,7 @@
     mpv
     # image viewing + editing
     feh
+    loupe
     imagemagick
     upscayl
     # pdf reading + editing
