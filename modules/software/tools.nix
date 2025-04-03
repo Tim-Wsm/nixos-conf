@@ -21,7 +21,6 @@
     imagemagick
     upscayl
     # pdf reading + editing
-    okular
     evince
     xournalpp
     # learning
