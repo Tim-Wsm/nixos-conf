@@ -31,12 +31,8 @@
     playerctl
   ];
 
-  # Use gdm as the display manager. Despite the name of the property this
-  # "should" not start an x-server.
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-  };
+  # Use gdm as the display manager.
+  services.displayManager.gdm.enable = true;
 
   # setup sway (see https://nixos.wiki/wiki/Sway)
   programs.sway.enable = true; # enable sway (reqiuired to make sway visible in gdm)

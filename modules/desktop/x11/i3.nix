@@ -36,8 +36,8 @@
   services.xserver = {
     enable = true;
     windowManager.i3.enable = true;
-    displayManager.gdm.enable = true;
   };
+  services.displayManager.gdm.enable = true;
 
   # configuration of sway
   home-manager.users.tim = {

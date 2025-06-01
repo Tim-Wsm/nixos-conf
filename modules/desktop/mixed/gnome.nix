@@ -5,9 +5,8 @@
     options = "caps:escape";
   };
 
-  # xserver
-  services.xserver = {
-    enable = true;
+  # Enable gnome desktop and gdm as display manager.
+  services = {
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
   };
