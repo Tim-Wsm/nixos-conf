@@ -7,5 +7,6 @@
     ./browser.nix
     ./e-mail.nix
     ./games.nix
+    ./video-playback.nix
   ];
 }

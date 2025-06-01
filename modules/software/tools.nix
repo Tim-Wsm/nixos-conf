@@ -13,9 +13,6 @@
     # screenshots & simple foto editing
     gthumb
     gimp
-    # video playback
-    vlc
-    mpv
     # image viewing + editing
     feh
     loupe
