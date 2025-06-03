@@ -17,5 +17,7 @@
     # ocaml
     ocaml
     opam
+    # Isabelle/HOL
+    isabelle
   ];
 }
