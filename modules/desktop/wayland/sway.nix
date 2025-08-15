@@ -66,11 +66,12 @@
   }: {
     # enable xdg portal for drag&drop and desktop sharing
     xdg.portal = {
-      xdgOpenUsePortal = true;
       enable = true;
+      xdgOpenUsePortal = true;
       extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
         pkgs.xdg-desktop-portal-wlr
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.kdePackages.xdg-desktop-portal-kde
       ];
       config.common.default = "*";
     };
