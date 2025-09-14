@@ -23,10 +23,10 @@
           playerctl = "${pkgs.playerctl}/bin/playerctl";
         in
           pkgs.writeShellScriptBin "waybar-music-status" ''
-            if [[ $(${playerctl} status) == "Playing" ]]; then
+            if [[ $(${playerctl} status -s) == "Playing" ]]; then
                 text="$(${playerctl} metadata --format '{{ artist }} | {{ title }}   𝅘𝅥𝅮' | sed s/\"/\\\\\"/g | sed s/\&/\&amp\;/g)"
                 echo {\"text\": \"$text\", \"class\": \"playing\"}
-            elif [[ $(${playerctl} status) == "Paused" ]]; then
+            elif [[ $(${playerctl} status -s) == "Paused" ]]; then
                 text="$(${playerctl} metadata --format '{{ artist }} | {{ title }}   𝅘𝅥𝅮' | sed s/\"/\\\\\"/g | sed s/\&/\&amp\;/g)"
                 echo {\"text\": \"$text\", \"class\": \"paused\"}
             else
