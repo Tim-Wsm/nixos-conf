@@ -13,7 +13,7 @@
   # dependencies for my i3 environment
   environment.defaultPackages = with pkgs; [
     # application runner
-    rofi-wayland
+    rofi
     # terminal
     alacritty
     # applets
@@ -63,7 +63,7 @@
         # configure launcher and terminal
         modifier = "${mod}";
         terminal = "${pkgs.alacritty}/bin/alacritty";
-        menu = "${pkgs.rofi-wayland}/bin/rofi -show run";
+        menu = "${pkgs.rofi}/bin/rofi -show run";
 
         # set inputs
         keybindings = let

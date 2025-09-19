@@ -79,7 +79,6 @@
     # rofi configuration (the application runner)
     programs.rofi = {
       enable = true;
-      package = pkgs.rofi-wayland;
       font = lib.mkForce "Noto Sans Mono 14";
     };
 
@@ -114,7 +113,7 @@
 
         # configure launcher and terminal
         modifier = "Mod4";
-        menu = "${pkgs.rofi-wayland}/bin/rofi -show drun";
+        menu = "${pkgs.rofi}/bin/rofi -show drun";
         terminal = "${pkgs.alacritty}/bin/alacritty";
 
         # set inputs
