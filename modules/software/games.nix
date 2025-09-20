@@ -7,6 +7,14 @@
 
     # required for some games (see https://nixos.wiki/wiki/Steam)
     gamescopeSession.enable = true;
+
+    # add protontricks
+    protontricks.enable = true;
+
+    # add proton-ge
+    extraCompatPackages = [
+      pkgs.proton-ge-bin
+    ];
   };
 
   # other programs for gaming
