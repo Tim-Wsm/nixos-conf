@@ -12,7 +12,6 @@ in {
     vlc
     libvlc
     mpv
-    # TODO: broke on update, reenable once it works again
-    # handbrake
+    handbrake
   ];
 }
