@@ -54,7 +54,9 @@
     open = true;
 
     # Use the latest stable version of the driver
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    # TODO: switch back to latest when it builds again
+    #package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   # Disable mouse acceleration glbally for this machine
