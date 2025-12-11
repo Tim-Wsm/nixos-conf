@@ -7,11 +7,31 @@
   vlc = pkgs.vlc.override {inherit libbluray;};
   handbrake = pkgs.handbrake.override {inherit libbluray;};
 in {
-  # programs used for video playback
   environment.systemPackages = with pkgs; [
+    # programs used for video playback
     vlc
     libvlc
     mpv
     handbrake
+    # enable HEIC image preview in nautilus
+    pkgs.libheif
+    pkgs.libheif.out
   ];
+
+  # enable gstreamer extension for nautilus
+  nixpkgs.overlays = [
+    (final: prev: {
+      nautilus = prev.nautilus.overrideAttrs (nprev: {
+        buildInputs =
+          nprev.buildInputs
+          ++ (with pkgs.gst_all_1; [
+            gst-plugins-good
+            gst-plugins-bad
+          ]);
+      });
+    })
+  ];
+
+  # enable HEIC image preview in nautilus
+  environment.pathsToLink = ["share/thumbnailers"];
 }
