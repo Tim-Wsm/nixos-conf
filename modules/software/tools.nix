@@ -9,7 +9,6 @@
     # messaging
     telegram-desktop
     signal-desktop
-    discord
     # screenshots & simple foto editing
     gthumb
     gimp

@@ -8,5 +8,6 @@
     ./e-mail.nix
     ./games.nix
     ./video-playback.nix
+    ./electron-apps.nix
   ];
 }
