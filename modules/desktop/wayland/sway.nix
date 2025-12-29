@@ -11,6 +11,8 @@
 
   # dependencies for my sway environment
   environment.systemPackages = with pkgs; [
+    # dbus
+    dbus
     # terminal
     alacritty
     # backlight
@@ -42,6 +44,10 @@
 
   # fix for gnome programs running outside of gnome
   programs.dconf.enable = true;
+  services.xserver.updateDbusEnvironment = true;
+
+  # enable gvfs for nautilus
+  services.gvfs.enable = true;
 
   # special optimizations for sway (see https://nixos.wiki/wiki/Sway)
   security.pam.loginLimits = [
@@ -52,9 +58,6 @@
       value = 1;
     }
   ];
-
-  # enable gvfs for nautilus
-  services.gvfs.enable = true;
 
   # configuration of sway
   home-manager.users.tim = {
@@ -101,6 +104,7 @@
           {command = "${pkgs.networkmanagerapplet}/bin/nm-applet";}
           {command = "${pkgs.blueman}/bin/blueman-applet";}
           {command = "${nix-update-notification-daemon}/bin/nix-update-notification-daemon";}
+          {command = "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd PATH";}
         ];
 
         # disable default bar
