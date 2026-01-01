@@ -31,7 +31,10 @@
 
   # Networking
   networking.hostName = "tim-pc"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    plugins = [pkgs.networkmanager-openvpn];
+  };
 
   # Pass hostname to home-manager
   home-manager.extraSpecialArgs = {
