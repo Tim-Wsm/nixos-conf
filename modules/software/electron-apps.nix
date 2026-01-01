@@ -1,8 +1,4 @@
-{
-  pkgs,
-  self,
-  ...
-}: {
+{pkgs, ...}: {
   # add all electron apps
   environment.systemPackages = with pkgs; [
     # messaging
@@ -19,6 +15,10 @@
           (old.postFixup or "")
           + ''
             wrapProgram $out/bin/discord \
+              --add-flags "--enable-features=UseOzonePlatform" \
+              --add-flags "--ozone-platform=wayland"
+
+            wrapProgram $out/bin/Discord \
               --add-flags "--enable-features=UseOzonePlatform" \
               --add-flags "--ozone-platform=wayland"
           '';
