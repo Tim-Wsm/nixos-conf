@@ -4,7 +4,7 @@
     withAACS = true;
     withBDplus = true;
   };
-  vlc = pkgs.vlc.override {inherit libbluray;};
+  #vlc = pkgs.vlc.override {inherit libbluray;};
   handbrake = pkgs.handbrake.override {inherit libbluray;};
 in {
   environment.systemPackages = with pkgs; [
