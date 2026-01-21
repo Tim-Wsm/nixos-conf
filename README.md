@@ -1,4 +1,5 @@
 
 # Screenshots
 
-![image](./screenshots/sway-example.jpg)
+![image](./screenshots/swaync-example.jpg)
+![image](./screenshots/productivity-example.jpg)
