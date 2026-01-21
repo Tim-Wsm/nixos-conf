@@ -17,7 +17,7 @@
     # ocaml
     ocaml
     opam
-    # Isabelle/HOL -> TODO: re-enable once it builds again
-    # isabelle
+    # Isabelle/HOL
+    isabelle
   ];
 }
