@@ -105,6 +105,7 @@
           {command = "${pkgs.blueman}/bin/blueman-applet";}
           {command = "${nix-update-notification-daemon}/bin/nix-update-notification-daemon";}
           {command = "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd PATH";}
+          {command = "${pkgs.protonmail-bridge-gui}/bin/protonmail-bridge-gui --no-window";}
         ];
 
         # disable default bar
