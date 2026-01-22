@@ -19,6 +19,7 @@
     upscayl
     # pdf reading + editing
     evince
+    kdePackages.okular
     xournalpp
     # learning
     anki
