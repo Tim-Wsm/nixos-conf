@@ -2,7 +2,6 @@
   # dependencies for sound
   environment.systemPackages = with pkgs; [
     pavucontrol
-    easyeffects
   ];
 
   # enable sound via pipewire
