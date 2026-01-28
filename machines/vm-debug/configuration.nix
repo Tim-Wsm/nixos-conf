@@ -23,6 +23,10 @@
   networking.hostName = "tim-dbg"; # Define your hostname.
   networking.networkmanager.enable = true;
 
+  # Disable speechd to reduce image size.
+  # see: https://nixcademy.com/de/posts/minimizing-nixos-images/
+  services.speechd.enable = false;
+
   # define vm test user
   users.users.tim = {
     isNormalUser = true;

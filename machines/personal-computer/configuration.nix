@@ -36,11 +36,6 @@
     plugins = [pkgs.networkmanager-openvpn];
   };
 
-  # Pass hostname to home-manager
-  home-manager.extraSpecialArgs = {
-    hostname = "tim-pc";
-  };
-
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
 
@@ -96,13 +91,9 @@
     ];
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.tim = {
-    isNormalUser = true;
-    description = "tim";
-    extraGroups = ["networkmanager" "wheel" "video" "libvirtd"];
-    packages = [];
-  };
+  # Disable speechd to reduce image size.
+  # see: https://nixcademy.com/de/posts/minimizing-nixos-images/
+  services.speechd.enable = false;
 
   # enable virtualization via virt-manager
   virtualisation.libvirtd.enable = true;
@@ -110,6 +101,19 @@
 
   # enable gvfs support
   services.gvfs.enable = true;
+
+  # Pass hostname to home-manager
+  home-manager.extraSpecialArgs = {
+    hostname = "tim-pc";
+  };
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.tim = {
+    isNormalUser = true;
+    description = "tim";
+    extraGroups = ["networkmanager" "wheel" "video" "libvirtd"];
+    packages = [];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

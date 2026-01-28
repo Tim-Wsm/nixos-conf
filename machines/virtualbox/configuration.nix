@@ -29,6 +29,10 @@
   networking.hostName = "tim-vbox"; # Define your hostname.
   networking.networkmanager.enable = true;
 
+  # Disable speechd to reduce image size.
+  # see: https://nixcademy.com/de/posts/minimizing-nixos-images/
+  services.speechd.enable = false;
+
   # Pass hostname to home-manager
   home-manager.extraSpecialArgs = {
     hostname = "tim-vbox";

@@ -36,6 +36,10 @@
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = true;
 
+  # Disable speechd to reduce image size.
+  # see: https://nixcademy.com/de/posts/minimizing-nixos-images/
+  services.speechd.enable = false;
+
   # Pass hostname to home-manager
   home-manager.extraSpecialArgs = {
     hostname = "tim-laptop";
