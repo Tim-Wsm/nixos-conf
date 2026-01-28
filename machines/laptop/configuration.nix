@@ -17,7 +17,6 @@
     ../../modules/system/bluetooth.nix
     ../../modules/desktop/themes.nix
     ../../modules/desktop/wayland/sway.nix
-    ../../modules/software/code.nix
     ../../modules/software/neovim.nix
     ../../modules/software/tools.nix
     ../../modules/software/browser.nix
