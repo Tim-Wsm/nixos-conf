@@ -2,6 +2,8 @@
   # Some default packages for quick and dirty development. For proper
   # development use custom flakes with `nix develop`.
   environment.systemPackages = with pkgs; [
+    # helpful tools
+    cloc
     # rust
     cargo
     rustc
