@@ -10,16 +10,12 @@
     clippy
     rust-analyzer
     rustfmt
-    # c debgugging
+    # c
+    gcc
     gdb
     valgrind
     # python
     python3
     python3Packages.virtualenv
-    # ocaml
-    ocaml
-    opam
-    # Isabelle/HOL
-    isabelle
   ];
 }
