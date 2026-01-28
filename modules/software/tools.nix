@@ -16,7 +16,6 @@
     feh
     loupe
     imagemagick
-    upscayl
     # pdf reading + editing
     evince
     kdePackages.okular
