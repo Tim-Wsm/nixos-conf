@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ./code.nix
     ./neovim.nix
     ./emacs.nix
     ./tools.nix
