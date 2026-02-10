@@ -21,6 +21,7 @@
     ../../modules/software/tools.nix
     ../../modules/software/browser.nix
     ../../modules/software/e-mail.nix
+    ../../modules/software/video-playback.nix
   ];
 
   # Bootloader
