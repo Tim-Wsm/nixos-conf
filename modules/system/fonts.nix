@@ -10,7 +10,7 @@
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
     liberation_ttf
-    #nerdfonts
+    # nerdfonts
     nerd-fonts.symbols-only
     nerd-fonts.noto
     nerd-fonts.jetbrains-mono
@@ -30,10 +30,10 @@
 
     serif = config.stylix.fonts.sansSerif;
 
-    monospace = {
-      package = pkgs.noto-fonts;
-      name = "Noto Sans Mono";
-    };
+    # monospace = {
+    #   package = pkgs.noto-fonts;
+    #   name = "Noto Sans Mono";
+    # };
 
     emoji = {
       package = pkgs.noto-fonts-color-emoji;
