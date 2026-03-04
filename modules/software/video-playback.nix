@@ -14,8 +14,7 @@ in {
     vlc
     libvlc
     mpv
-    # TODO: reenable handbrake once ffmpeg builds again
-    # handbrake
+    handbrake
     # enable HEIC image preview in nautilus
     pkgs.libheif
     pkgs.libheif.out
