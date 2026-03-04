@@ -82,7 +82,7 @@
     # rofi configuration (the application runner)
     programs.rofi = {
       enable = true;
-      font = lib.mkForce "Noto Sans Mono 14";
+      #font = lib.mkForce "Noto Sans Mono 14";
     };
 
     # sway configuration

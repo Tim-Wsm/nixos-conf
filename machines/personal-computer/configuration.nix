@@ -27,7 +27,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # TODO: pinned kernel to 6.18 because of build issue with the nvidia driver
+  #       -> switch back, once it is fixed
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
 
   # Networking
   networking.hostName = "tim-pc"; # Define your hostname.

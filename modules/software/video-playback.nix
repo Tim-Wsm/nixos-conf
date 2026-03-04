@@ -1,21 +1,20 @@
 {pkgs, ...}: let
   # TODO: reenable libbluray when I need it. The following broke at some point.
   #
-  # # enable blueray support for vlc and handbrake
-  # libbluray = pkgs.libbluray.override {
-  #   withAACS = true;
-  #   withBDplus = true;
-  # };
-  # vlc = pkgs.vlc.override {inherit libbluray;};
-  # handbrake = pkgs.handbrake.override {inherit libbluray;};
+  # enable blueray support for vlc and handbrake
+  libbluray = pkgs.libbluray.override {
+    withAACS = true;
+    withBDplus = true;
+  };
+  #vlc = pkgs.vlc.override {inherit libbluray;};
+  handbrake = pkgs.handbrake.override {inherit libbluray;};
 in {
   environment.systemPackages = with pkgs; [
     # programs used for video playback
     vlc
     libvlc
     mpv
-    # TODO: reenable handbrake once ffmpeg builds again
-    # handbrake
+    handbrake
     # enable HEIC image preview in nautilus
     pkgs.libheif
     pkgs.libheif.out
