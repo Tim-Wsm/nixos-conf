@@ -22,5 +22,6 @@
     xournalpp
     # learning
     anki
+    freeplane
   ];
 }
