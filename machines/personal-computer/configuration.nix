@@ -90,8 +90,9 @@
   };
 
   # Disable speechd to reduce image size.
+  # TODO: reenabled for cosmic, remove if not needed
   # see: https://nixcademy.com/de/posts/minimizing-nixos-images/
-  services.speechd.enable = false;
+  # services.speechd.enable = false;
 
   # enable virtualization via virt-manager
   virtualisation.libvirtd.enable = true;
