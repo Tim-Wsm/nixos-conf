@@ -23,5 +23,7 @@
     # learning
     anki
     freeplane
+    # spell checking
+    languagetool
   ];
 }
