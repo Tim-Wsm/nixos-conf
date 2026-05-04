@@ -17,9 +17,9 @@
     ];
   };
 
-  # other programs for gaming
-  environment.systemPackages = with pkgs; [
-    # bottles for windows games
-    bottles
-  ];
+  # # other programs for gaming
+  #environment.systemPackages = with pkgs; [
+  #  # bottles for windows games
+  #  bottles
+  #];
 }
